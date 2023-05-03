@@ -20,6 +20,7 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
+        if(!tradeLicenseId.equals(tradeLicenseId.toUpperCase()))throw new ValidLicenseCannotBeGeneratedException("Valid License can not be generated");
         int size = tradeLicenseId.length();
 
 
