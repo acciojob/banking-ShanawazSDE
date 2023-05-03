@@ -12,6 +12,7 @@ public class CurrentAccount extends BankAccount{
         super(name,balance,5000);
         if(balance < 5000) throw new InsufficientBalanceException("Insufficient Balance");
         this.tradeLicenseId = tradeLicenseId;
+        validateLicenseId();
     }
 
     public void validateLicenseId() throws Exception {
@@ -20,12 +21,18 @@ public class CurrentAccount extends BankAccount{
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
         int size = tradeLicenseId.length();
-        Map<Character,Integer> map = new HashMap<>();
-        int maxFreq = populateMap(tradeLicenseId,map);
+
+
         if(!valid(size)){
+            Map<Character,Integer> map = new HashMap<>();
+            int maxFreq = populateMap(tradeLicenseId,map);
+
+
             if((size % 2 == 0 && maxFreq > size/2) || (size % 2 != 0 && maxFreq > (size+1)/2))throw new ValidLicenseCannotBeGeneratedException("Valid License can not be generated");
+
+            tradeLicenseId = makeValidLicense(size,map);
         }
-        tradeLicenseId = makeValidLicense(size,map);
+
 
     }
 
