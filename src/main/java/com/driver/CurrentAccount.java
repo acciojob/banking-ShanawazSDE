@@ -28,8 +28,8 @@ public class CurrentAccount extends BankAccount{
             Map<Character,Integer> map = new HashMap<>();
             int maxFreq = populateMap(tradeLicenseId,map);
 
-
-            if((size % 2 == 0 && maxFreq > size/2) || (size % 2 != 0 && maxFreq > (size+1)/2))throw new ValidLicenseCannotBeGeneratedException("Valid License can not be generated");
+            //|| (size % 2 != 0 && maxFreq > (size+1)/2)   size % 2 == 0 &&
+            if(( maxFreq > size/2) )throw new ValidLicenseCannotBeGeneratedException("Valid License can not be generated");
 
             tradeLicenseId = makeValidLicense(size,map);
         }
@@ -65,7 +65,7 @@ public class CurrentAccount extends BankAccount{
     }
 
     public boolean valid(int size){
-         size = tradeLicenseId.length();
+       //  size = tradeLicenseId.length();
         for(int i = 0; i < size - 1; i++){
             if(tradeLicenseId.charAt(i)==tradeLicenseId.charAt(i+1)) return false;
         }
