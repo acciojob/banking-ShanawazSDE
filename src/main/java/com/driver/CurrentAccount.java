@@ -24,38 +24,38 @@ public class CurrentAccount extends BankAccount{
         if(!tradeLicenseId.equals(tradeLicenseId.toUpperCase()))throw new ValidLicenseCannotBeGeneratedException("Valid License can not be generated");
         int size = tradeLicenseId.length();
 
-
-        if(!valid(size)){
-            Map<Character,Integer> map = new HashMap<>();
+         Map<Character,Integer> map = new HashMap<>();
             int maxFreq = populateMap(tradeLicenseId,map);
 
             //|| (size % 2 != 0 && maxFreq > (size+1)/2)   size % 2 == 0 &&
             if(( maxFreq > size/2) )throw new ValidLicenseCannotBeGeneratedException("Valid License can not be generated");
 
-              makeValidLicense(size,map);
-        }
-
-
-    }
-
-    public void makeValidLicense(int size, Map<Character,Integer> map){
-//        char[] array = new char[size];
-//        int index = 0;
-//        for(Character key : map.keySet()){
-//            int count = map.get(key);
-//            while(count > 0){
-//                array[index] = key;
-//                index += 2;
-//                if(index >= size) index = 1;
-//
-//                count--;
-//            }
-//        }
-//        return new String(array);
-        while (!valid(size)){
+    
+            while (!valid(size)){
             Collections.shuffle(Arrays.asList(tradeLicenseId.toCharArray()));
         }
+             
+        
+
+
     }
+
+//     public void makeValidLicense(int size, Map<Character,Integer> map){
+// //        char[] array = new char[size];
+// //        int index = 0;
+// //        for(Character key : map.keySet()){
+// //            int count = map.get(key);
+// //            while(count > 0){
+// //                array[index] = key;
+// //                index += 2;
+// //                if(index >= size) index = 1;
+// //
+// //                count--;
+// //            }
+// //        }
+// //        return new String(array);
+       
+//     }
 
     private int populateMap(String tradeLicenseId, Map<Character, Integer> map) {
         int size = tradeLicenseId.length();
