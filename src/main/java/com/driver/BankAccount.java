@@ -21,15 +21,27 @@ public class BankAccount {
         return AccountGenerator(digits,sum,"");
     }
 
-    public static String AccountGenerator(int digits, int sum, String s){
-        if(digits == 0){
-            if(sum == 0)return s;
-            return null;
-        }
+    private static String AccountGenerator(int digits, int sum, String s){
+//        if(digits == 0){
+//            if(sum == 0)return s;
+//            return null;
+//        }
+//        String ans = "";
+//        for(int i = 0; i <= 9;i++){
+//            ans = AccountGenerator(digits-1,sum-i,s+i);
+//            if(ans != null)break;
+//        }
+//        return ans;
         String ans = "";
-        for(int i = 0; i <= 9;i++){
-            ans = AccountGenerator(digits-1,sum-i,s+i);
-            if(ans != null)break;
+        while (digits > 0){
+            for(int i = 9; i >= 0; i--){
+                if(i <= sum){
+                    ans+=i;
+                    sum -= i;
+                    break;
+                }
+            }
+            digits--;
         }
         return ans;
     }
